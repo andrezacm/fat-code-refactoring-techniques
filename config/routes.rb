@@ -1,7 +1,8 @@
 SampleApp::Application.routes.draw do
   resources :users do
     member do
-      get :following, :followers
+      get :followers, controller: 'followers'
+      get :following, controller: 'following'
     end
   end
   resources :sessions,      only: [:new, :create, :destroy]
