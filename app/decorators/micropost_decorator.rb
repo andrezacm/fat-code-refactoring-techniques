@@ -7,4 +7,12 @@ class MicropostDecorator < Draper::Decorator
     end
   end
 
+  def profanity_violation_msg
+    <<-MSG.html_safe
+      <p>Whoa, better watch your language! Profanity: '#{object.profane_words_in_content.join(", ")}' not allowed!
+      You've tried to use profanity #{h.pluralize(object.user.profanity_count, "time")}!
+      </p><p class="parent-notification">Your parents have been notified!</p>
+    MSG
+  end
+
 end
